@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KA Taxi - Votre service de taxi à Paris</title>
+
+    <!-- Primary Meta Tags -->
+    <meta name="description" content="KA Taxi: Votre service de taxi privé à Paris. Réservation simple et rapide pour transferts aéroports (CDG, Orly), gares et déplacements en ville. Chauffeurs professionnels, service 24/7.">
+    <meta name="keywords" content="taxi paris, taxi aéroport, réservation taxi, VTC paris, taxi CDG, taxi Orly, chauffeur privé paris, KA Taxi">
+    <meta name="author" content="KA Taxi">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://YOUR-WEBSITE-URL.COM/"> 
+    <meta property="og:title" content="KA Taxi - Service de Taxi Privé à Paris">
+    <meta property="og:description" content="Service de taxi fiable et ponctuel à Paris. Transferts aéroports, gares et tous vos déplacements. Réservez en ligne.">
+    <meta property="og:image" content="https://YOUR-WEBSITE-URL.COM/BACKGROUND/paris-taxi-sign-night-arc-de-triomphe-800-2x1.jpg"> 
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://YOUR-WEBSITE-URL.COM/"> 
+    <meta property="twitter:title" content="KA Taxi - Service de Taxi Privé à Paris">
+    <meta property="twitter:description" content="Service de taxi fiable et ponctuel à Paris. Transferts aéroports, gares et tous vos déplacements. Réservez en ligne.">
+    <meta property="twitter:image" content="https://YOUR-WEBSITE-URL.COM/BACKGROUND/paris-taxi-sign-night-arc-de-triomphe-800-2x1.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/dark.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="background-slideshow">
+        <img src="BACKGROUND/airport-charles-de-gaulle-2017-iphone-mc-800-2x1.jpg" alt="Taxi attendant à l'aéroport de Paris Charles de Gaulle">
+        <img src="BACKGROUND/paris-taxi-sign-night-arc-de-triomphe-800-2x1.jpg" alt="Enseigne de taxi parisien la nuit avec l'Arc de Triomphe">
+        <img src="BACKGROUND/paris-taxi-stand-line-unk-1000-2x1.jpg" alt="File de taxis attendant des clients à une station parisienne">
+        <img src="BACKGROUND/taxi-parisien-sign-night-champs-elysees-arc-de-triomphe-dreamstime-800-2x1.jpg" alt="Taxi la nuit sur les Champs-Élysées">
+        <img src="BACKGROUND/taxi-ride-hailing-woman-unk-1000-2x1.jpg" alt="Femme commandant un taxi via une application mobile">
+    </div>
+    <header>
+        <div class="container">
+            <a href="#hero" class="logo-link"><h1 class="logo">KA Taxi</h1></a>
+            <button class="hamburger" id="hamburger-button" aria-label="Toggle menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            <span class="contact-link">Simple, rapide et fiable.</span>
+            <nav>
+                <ul>
+                    <li><a href="#hero">Accueil</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">À propos</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="container">
+            <h2>Réservez votre taxi en ligne</h2>
+            <p>Simple, rapide et fiable.</p>
+            <a href="#contact" class="btn">Réserver maintenant</a>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <h2>Nos services</h2>
+            <div class="service-cards">
+                <div class="card">
+                    <h3>Transferts aéroport</h3>
+                    <p>Nous assurons vos transferts depuis et vers les aéroports de Paris.</p>
+                </div>
+                <div class="card">
+                    <h3>Courses en ville</h3>
+                    <p>Déplacez-vous facilement dans tout Paris avec nos chauffeurs expérimentés.</p>
+                </div>
+                <div class="card">
+                    <h3>Longues distances</h3>
+                    <p>Nous proposons également des courses longues distances sur demande.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="service-area">
+        <div class="container">
+            <h2>Notre zone de service</h2>
+            <div id="map"></div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2>À propos de KA Taxi</h2>
+            <p>KA Taxi est votre partenaire de confiance pour tous vos déplacements à Paris. Nous nous engageons à fournir un service ponctuel, sûr et confortable.</p>
+        </div>
+    </section>
+
+    <section id="testimonials">
+        <div class="container">
+            <h2>Ce que disent nos clients</h2>
+            <div class="testimonial-cards">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Service impeccable et chauffeur très professionnel. Le trajet pour l'aéroport s'est déroulé à merveille. Je recommande vivement KA Taxi !"</p>
+                    <p class="testimonial-author">- Jean Dupont</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Ponctualité, confort et gentillesse. C'est la deuxième fois que je fais appel à eux et je suis toujours aussi satisfaite. Merci !"</p>
+                    <p class="testimonial-author">- Marie Dubois</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"J'ai réservé un taxi pour un long trajet et tout était parfait. Le véhicule était très propre et confortable. Excellent rapport qualité-prix."</p>
+                    <p class="testimonial-author">- Paul Martin</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Réservez votre course</h2>
+            <p>Envoyez-nous un email à: <a href="mailto:taxiparisien_75@outlook.fr">taxiparisien_75@outlook.fr</a> ou remplissez le formulaire ci-dessous.</p>
+            <form id="contact-form">
+                <label for="fullName" class="visually-hidden">Nom et prénom</label>
+                <input type="text" id="fullName" name="fullName" placeholder="Nom et prénom" required>
+                <label for="email" class="visually-hidden">Votre email</label>
+                <input type="email" id="email" name="email" placeholder="Votre email" required>
+                <label for="phone" class="visually-hidden">Numéro de téléphone</label>
+                <input type="tel" id="phone" name="phone" placeholder="Numéro de téléphone" required>
+                <label for="pickup" class="visually-hidden">Point de départ</label>
+                <input type="text" id="pickup" name="pickup" placeholder="Point de départ" required>
+                <label for="destination" class="visually-hidden">Point d'arrivée</label>
+                <input type="text" id="destination" name="destination" placeholder="Point d'arrivée" required>
+                <label for="appointment" class="visually-hidden">Date et heure du rendez-vous</label>
+                <input type="text" id="appointment" name="appointment" placeholder="Date et heure du rendez-vous" required>
+                <label for="message" class="visually-hidden">Un message supplémentaire ? (Optionnel)</label>
+                <textarea id="message" name="message" placeholder="Un message supplémentaire ? (Optionnel)"></textarea>
+                <button type="submit" class="btn">Envoyer la demande</button>
+                <p class="privacy-notice">Vos données sont en sécurité. Nous les utilisons uniquement pour vous contacter afin de confirmer la réservation.</p>
+            </form>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <div class="container">
+            <h2>Notre Galerie</h2>
+            <div class="gallery-images">
+                <img src="images/images.jpg" alt="KA Taxi Image 1">
+                <img src="images/images (1).jpg" alt="KA Taxi Image 2">
+            </div>
+        </div>
+    </section>
+
+    <!-- The Modal -->
+    <div id="responseModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <p id="modal-message"></p>
+      </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 KA Taxi. Tous droits réservés.</p>
+            <p>Email: <a href="mailto:taxiparisien_75@outlook.fr">taxiparisien_75@outlook.fr</a></p>
+            <p id="visitor-counter">Visiteurs: <span class="count">...</span></p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/fr.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
