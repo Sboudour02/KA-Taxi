@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Contact form submission
     const contactForm = document.getElementById('contact-form');
-    const scriptURL = 'http://127.0.0.1:5000/submit';
+    const scriptURL = 'https://ka-taxi-backend.onrender.com/submit';
 
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
