@@ -360,6 +360,51 @@ section {
     font-size: 1rem;
 }
 
+/* --- Latest Comments Section --- */
+#latest-comments {
+    padding: 8rem 0 4rem 0;
+}
+
+#latest-comments h2 {
+    margin-bottom: 3.5rem;
+}
+
+.comment-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.comment-card {
+    background-color: var(--panel-bg);
+    padding: 2.5rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 215, 0, 0.1);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.comment-card .comment-text {
+    font-style: italic;
+    color: var(--text-light);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.star-rating {
+    color: var(--gold-color);
+    font-size: 1.5rem;
+    margin-top: 1rem;
+}
+
+.star-rating .star {
+    margin: 0 2px;
+}
+
 /* --- Gallery & Footer --- */
 #gallery .gallery-images {
     display: grid;
