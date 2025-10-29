@@ -16,7 +16,7 @@ RECIPIENT_EMAIL = os.environ.get("RECIPIENT_EMAIL", "sboudour02@gmail.com") # De
 
 # SMTP Server details for Gmail
 SMTP_SERVER = "smtp.gmail.com"
-SMTP_PORT = 587 # For TLS
+SMTP_PORT = 465 # For SMTPS/SSL
 
 @app.route('/submit', methods=['POST'])
 def submit_form():
@@ -64,8 +64,7 @@ Message supplémentaire:
     # --- Send Email ---
     try:
         context = ssl.create_default_context()
-        with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
-            server.starttls(context=context)
+        with smtplib.SMTP_SSL(SMTP_SERVER, SMTP_PORT, context=context) as server:
             server.login(SENDER_EMAIL, SENDER_APP_PASSWORD)
             server.sendmail(SENDER_EMAIL, RECIPIENT_EMAIL, msg.as_string())
         
