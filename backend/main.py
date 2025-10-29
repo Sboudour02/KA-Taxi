@@ -80,10 +80,10 @@ Message supplémentaire:
         return jsonify({"result": "error", "message": "Destinataire refusé. Vérifiez l'adresse email.", "details": str(e)}), 500
     except smtplib.SMTPException as e:
         print(f"ERROR: General SMTP Error! Details: {e}")
-        return jsonify({"result": "error", "message": f"Erreur SMTP générale: {str(e)}", "details": str(e)}), 500
+        return jsonify({"result": "error", "message": f'Erreur SMTP générale: {str(e)}'}), 500
     except Exception as e:
         print(f"ERROR: Unexpected error during email sending: {e}")
-        return jsonify({"result": "error", "message": f"Erreur inattendue lors de l'envoi de l'email: {str(e)}", "details": str(e)}"), 500
+        return jsonify({"result": "error", "message": f'Erreur inattendue lors de l\'envoi de l\'email: {str(e)}', "details": str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
