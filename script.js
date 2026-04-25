@@ -7,24 +7,10 @@ document.addEventListener('DOMContentLoaded', function() {
         header.classList.toggle('nav-active');
     });
 
-    // Smooth scrolling for all on-page anchor links
+    // Close mobile menu on anchor link click
     const smoothScrollLinks = document.querySelectorAll('a[href^="#"]');
     for (const link of smoothScrollLinks) {
         link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
-            // Use a fallback for href="#" to scroll to top
-            const targetElement = document.getElementById(targetId) || document.body;
-            
-            if (targetElement) {
-                // Calculate scroll position, accounting for the fixed header
-                const offsetTop = (targetId === 'hero' || targetId === '') ? 0 : targetElement.offsetTop - 80;
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
-            }
-
             // Close the mobile menu if it's active
             if (header.classList.contains('nav-active')) {
                 header.classList.remove('nav-active');
@@ -186,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Fetch and display visitor count
     function fetchVisitorCount() {
-        // The same script URL is used for GET requests to the doGet function
+        // GET request to backend for visitor counter
         fetch(scriptURL)
             .then(response => response.json())
             .then(data => {

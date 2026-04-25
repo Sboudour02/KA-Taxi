@@ -18,8 +18,32 @@ RECIPIENT_EMAIL = os.environ.get("RECIPIENT_EMAIL", "sboudour02@gmail.com") # De
 SMTP_SERVER = "smtp.gmail.com"
 SMTP_PORT = 465 # For SMTPS/SSL
 
-@app.route('/submit', methods=['POST'])
+@app.route('/submit', methods=['POST', 'GET'])
 def submit_form():
+    if request.method == 'GET':
+        # --- Handle Visitor Counter ---
+        count_file = "visit_count.txt"
+        count = 1
+
+        # Read the current count
+        if os.path.exists(count_file):
+            try:
+                with open(count_file, "r") as f:
+                    content = f.read().strip()
+                    if content:
+                        count = int(content) + 1
+            except Exception as e:
+                print(f"Error reading visit count: {e}")
+
+        # Write the new count
+        try:
+            with open(count_file, "w") as f:
+                f.write(str(count))
+        except Exception as e:
+            print(f"Error writing visit count: {e}")
+
+        return jsonify({"count": count})
+
     if not request.is_json:
         return jsonify({"error": "Request must be JSON"}), 400
 
