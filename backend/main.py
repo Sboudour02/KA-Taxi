@@ -10,9 +10,9 @@ CORS(app)
 
 # --- Email Configuration (using Environment Variables) ---
 # These will be set on Render.com
-SENDER_EMAIL = os.environ.get("SENDER_EMAIL", "sboudour02@gmail.com") # Default for local testing
-SENDER_APP_PASSWORD = os.environ.get("SENDER_APP_PASSWORD", "zmts emgj czpo jkeg") # Default for local testing
-RECIPIENT_EMAIL = os.environ.get("RECIPIENT_EMAIL", "sboudour02@gmail.com") # Default for local testing
+SENDER_EMAIL = os.environ.get("SENDER_EMAIL")
+SENDER_APP_PASSWORD = os.environ.get("SENDER_APP_PASSWORD")
+RECIPIENT_EMAIL = os.environ.get("RECIPIENT_EMAIL")
 
 # SMTP Server details for Gmail
 SMTP_SERVER = "smtp.gmail.com"
