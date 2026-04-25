@@ -26,11 +26,6 @@ def submit_form():
     data = request.get_json()
     print("Received data:", data)
 
-    # --- Log Environment Variables for Debugging ---
-    print(f"DEBUG: SENDER_EMAIL={SENDER_EMAIL}")
-    print(f"DEBUG: SENDER_APP_PASSWORD={'*' * len(SENDER_APP_PASSWORD) if SENDER_APP_PASSWORD else 'None'}") # Mask password
-    print(f"DEBUG: RECIPIENT_EMAIL={RECIPIENT_EMAIL}")
-
     # --- Construct Email Message ---
     full_name = data.get("fullName", "N/A")
     email = data.get("email", "N/A")
