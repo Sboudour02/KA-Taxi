@@ -62,7 +62,40 @@ document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById('contact-form');
     const scriptURL = 'https://ka-taxi-backend.onrender.com/submit';
 
-    contactForm.addEventListener('submit', function(e) {
+    async function submitForm(url, formPayload) {
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formPayload)
+            });
+            console.log('Server Response Object:', response);
+            const text = await response.text(); // Get response as TEXT first for debugging
+            console.log('Server Response Body (as text):', text);
+
+            try {
+                const responseData = JSON.parse(text); // Manually try to parse the text
+                if (responseData.result === 'success') {
+                    showModal('Merci ! Votre demande de réservation a été envoyée avec succès. Nous vous contacterons bientôt pour confirmer.');
+                } else {
+                    console.error('Error from Google Script logic:', responseData.error);
+                    showModal('Une erreur s\'est produite lors du traitement de votre demande.');
+                }
+            } catch (e) {
+                // This will catch errors if the response text is not valid JSON (e.g., an HTML error page from Google)
+                console.error("Failed to parse server response as JSON:", e);
+                showModal("Le serveur a renvoyé une réponse inattendue. Veuillez contacter le support technique.");
+            }
+        } catch (error) {
+            // This will catch network errors (CORS, DNS, etc.)
+            console.error('Fetch Communication Error!', error.message);
+            showModal('Une erreur de communication s\'est produite. Veuillez vérifier votre connexion ou nous appeler directement.');
+        }
+    }
+
+    contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         const submitButton = contactForm.querySelector('button[type="submit"]');
         const originalButtonText = submitButton.textContent;
@@ -73,43 +106,13 @@ document.addEventListener('DOMContentLoaded', function() {
         const data = {};
         formData.forEach((value, key) => data[key] = value);
 
-        fetch(scriptURL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => {
-                console.log('Server Response Object:', response);
-                return response.text(); // Get response as TEXT first for debugging
-            })
-            .then(text => {
-                console.log('Server Response Body (as text):', text);
-                try {
-                    const data = JSON.parse(text); // Manually try to parse the text
-                    if (data.result === 'success') {
-                        showModal('Merci ! Votre demande de réservation a été envoyée avec succès. Nous vous contacterons bientôt pour confirmer.');
-                    } else {
-                        console.error('Error from Google Script logic:', data.error);
-                        showModal('Une erreur s\'est produite lors du traitement de votre demande.');
-                    }
-                } catch (e) {
-                    // This will catch errors if the response text is not valid JSON (e.g., an HTML error page from Google)
-                    console.error("Failed to parse server response as JSON:", e);
-                    showModal("Le serveur a renvoyé une réponse inattendue. Veuillez contacter le support technique.");
-                }
-            })
-            .catch(error => {
-                // This will catch network errors (CORS, DNS, etc.)
-                console.error('Fetch Communication Error!', error.message);
-                showModal('Une erreur de communication s\'est produite. Veuillez vérifier votre connexion ou nous appeler directement.');
-            })
-            .finally(() => {
-                contactForm.reset();
-                submitButton.textContent = originalButtonText;
-                submitButton.disabled = false;
-            });
+        try {
+            await submitForm(scriptURL, data);
+        } finally {
+            contactForm.reset();
+            submitButton.textContent = originalButtonText;
+            submitButton.disabled = false;
+        }
     });
 
     // Initialize Flatpickr for the appointment field
