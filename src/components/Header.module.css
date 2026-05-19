@@ -1,0 +1,152 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 1.5rem 0;
+    transition: all 0.4s ease;
+    background: transparent;
+}
+
+.scrolled {
+    padding: 1rem 0;
+    background: rgba(5, 5, 5, 0.85);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.navContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-family: var(--font-playfair);
+    font-weight: 700;
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    letter-spacing: 0.1em;
+    color: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.gold {
+    color: var(--accent);
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+.nav a {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav a:hover {
+    color: var(--accent);
+}
+
+.langToggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 1rem;
+}
+
+.langToggle button {
+    font-size: 0.75rem;
+    color: var(--foreground);
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+.langToggle .activeLang {
+    opacity: 1;
+    font-weight: 700;
+}
+
+.separator {
+    opacity: 0.2;
+    font-size: 0.7rem;
+}
+
+.burger {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    background: none;
+    border: none;
+    padding: 5px;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background-color: var(--foreground);
+    transition: all 0.3s ease;
+}
+
+.mobileCta {
+    display: none;
+}
+
+@media (max-width: 968px) {
+    .header :global(.premium-button) {
+        display: none;
+    }
+
+    .burger {
+        display: flex;
+    }
+
+    .nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        height: 100vh;
+        background: #0A0A0A;
+        flex-direction: column;
+        justify-content: center;
+        transition: right 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+        z-index: 1001;
+        border-left: 1px solid var(--border);
+    }
+
+    .navOpen {
+        right: 0;
+    }
+
+    .nav a {
+        font-size: 1.2rem;
+    }
+
+    .mobileCta {
+        display: block;
+        margin-top: 1rem;
+        color: var(--accent) !important;
+        font-weight: 700;
+    }
+
+    .barOpen:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .barOpen:nth-child(2) {
+        opacity: 0;
+    }
+
+    .barOpen:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+}

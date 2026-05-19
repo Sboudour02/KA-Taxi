@@ -1,0 +1,78 @@
+.section {
+    padding: 8rem 0;
+    background: #080808;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 5rem;
+}
+
+.airportList {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 1.5rem;
+    background: var(--card-bg);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+}
+
+.code {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent);
+    min-width: 100px;
+    font-family: var(--font-inter);
+    letter-spacing: 0.1em;
+}
+
+.name {
+    font-size: 1.25rem;
+    font-weight: 400;
+    font-family: var(--font-playfair);
+}
+
+.line {
+    flex-grow: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--accent) 0%, transparent 100%);
+    opacity: 0.3;
+}
+
+.specialNote {
+    margin-top: 4rem;
+    text-align: center;
+    opacity: 0.5;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+    .item {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .line {
+        display: none;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+}

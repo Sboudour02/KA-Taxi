@@ -1,0 +1,58 @@
+.howSection {
+    background: #0a0a0a;
+}
+
+.howTitle {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.howGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 3rem;
+    text-align: center;
+}
+
+.howStepNumber {
+    font-size: clamp(3rem, 10vw, 5rem);
+    font-family: var(--font-playfair);
+    color: var(--accent);
+    opacity: 0.15;
+    margin-bottom: -1rem;
+    line-height: 1;
+}
+
+.howStepTitle {
+    margin-bottom: 1rem;
+}
+
+.howStepDesc {
+    opacity: 0.6;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.whyTitle {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.whyGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+@media (max-width: 768px) {
+
+    .howGrid,
+    .whyGrid {
+        gap: 2rem;
+    }
+
+    .howTitle,
+    .whyTitle {
+        margin-bottom: 3rem;
+    }
+}
